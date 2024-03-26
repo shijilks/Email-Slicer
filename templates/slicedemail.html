@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Slicer</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Email Slicer</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="email">Enter your email address:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Slice Email</button>
+        </form>
+        <hr>
+        {% if username and domain %}
+            <h2>Result:</h2>
+            <p><strong>Username:</strong> {{ username }}</p>
+            <p><strong>Domain:</strong> {{ domain }}</p>
+            <p>{{ custom_message }}</p>
+        {% elif error_message %}
+            <div class="alert alert-danger" role="alert">
+                {{ error_message }}
+            </div>
+        {% endif %}
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
